@@ -15,6 +15,14 @@ use Illuminate\Support\Facades\Route;
                 ->middleware('auth')
                 ->group(function() {
 
+
+        /**
+         * Routes Users 
+         */
+
+        Route::any('users/search', 'UserController@search')->name('users.search');
+        Route::resource('users', 'UserController');
+
         /**
          * Plans x Profile
          */
