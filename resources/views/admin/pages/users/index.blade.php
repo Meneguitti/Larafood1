@@ -9,7 +9,7 @@
     <li class="breadcrumb-item active"> <a href="{{ route('users.index') }}" class="active"> Usuários </a> </li>
 </ol>
 
-<h1>Usuários <a href="{{ route('users.create') }}" class="btn btn-success"><i class="fas fa-plus-square"> Novo Usuário </i></a></h1>
+<h1>Usuários <a href="{{ route('users.create') }}" class="btn btn-success"><i class="fas fa-plus-square"></i> Novo Usuário </a></h1>
 @stop
 
 @section('content')
@@ -36,8 +36,9 @@
                             <td> {{ $user->name }}</td>
                             <td> {{ $user->email }}</td>
                             <td style="width: 250px;">
-                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-warning">Ver</a>
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info">Editar</a>
+                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-warning">Ver</a>
+                                <a href="{{ route('users.roles', $user->id) }}" class="btn btn-info" title="Cargos"><i class="fas fa-address-card"></i> Cargos</a>
                             </td>
                         </tr>
                     @endforeach

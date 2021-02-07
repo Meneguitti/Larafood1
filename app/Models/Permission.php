@@ -17,5 +17,13 @@ class Permission extends Model
         return $this->belongsToMany(Profile::class);
     }
 
+     /**
+     * Get Roles
+     */
+
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
+
     use HasFactory;
 }

@@ -16,12 +16,81 @@ use Illuminate\Support\Facades\Route;
                 ->group(function() {
 
 
+
+        /**
+         * Roles x User
+         */
+
+        Route::get('users/{id}/role/{idRole}/detach', 'ACL\RoleUserController@detachRolesUser')->name('users.role.detach');
+        Route::post('users/{id}/roles', 'ACL\RoleUserController@attachRolesUser')->name('users.roles.attach');
+        Route::any('users/{id}/roles/create', 'ACL\RoleUserController@rolesAvailable')->name('users.roles.available');
+        Route::get('users/{id}/roles', 'ACL\RoleUserController@roles')->name('users.roles');
+        Route::get('role/{id}/users', 'ACL\RoleUserController@users')->name('roles.users');
+
+         /**
+         * Permission x Role
+         */
+
+        Route::get('roles/{id}/premission/{idPermission}/detach', 'ACL\PermissionRoleController@detachPermissionsRole')->name('roles.permissions.detach');
+        Route::post('roles/{id}/premissions', 'ACL\PermissionRoleController@attachPermissionsRole')->name('roles.permissions.attach');
+        Route::any('roles/{id}/premissions/create', 'ACL\PermissionRoleController@permissionsAvailable')->name('roles.permissions.available');
+        Route::get('roles/{id}/premissions', 'ACL\PermissionRoleController@permissions')->name('roles.permissions');
+        Route::get('premissions/{id}/role', 'ACL\PermissionRoleController@roles')->name('permissions.roles');
+
+         /**
+         * Routes Profiles 
+         */
+
+        Route::any('roles/search', 'ACL\RoleController@search')->name('roles.search');
+        Route::resource('roles', 'ACL\RoleController');
+
+
+        /**
+         * Routes Tenants 
+         */
+
+        Route::any('tenants/search', 'TenantController@search')->name('tenants.search');
+        Route::resource('tenants', 'TenantController');
+
+         /**
+         * Routes Tables 
+         */
+
+        Route::any('tables/search', 'TableController@search')->name('tables.search');
+        Route::resource('tables', 'TableController');
+
+         /**
+         * product x Category
+         */
+
+         Route::get('products/{id}/category/{idCategory}/detach', 'CategoryProductController@detachCategoryProduct')->name('products.category.detach');
+         Route::post('products/{id}/categories', 'CategoryProductController@attachCategoriesProduct')->name('products.categories.attach');
+         Route::any('products/{id}/categories/create', 'CategoryProductController@categoriesAvailable')->name('products.categories.available');
+         Route::get('products/{id}/categories', 'CategoryProductController@categories')->name('products.categories');
+         Route::get('categories/{id}/products', 'CategoryProductController@products')->name('categories.products');
+
         /**
          * Routes Users 
          */
 
         Route::any('users/search', 'UserController@search')->name('users.search');
         Route::resource('users', 'UserController');
+
+
+        /**
+         * Routes Products 
+         */
+
+        Route::any('products/search', 'ProductController@search')->name('products.search');
+        Route::resource('products', 'ProductController');
+
+
+        /**
+         * Routes Categories
+         */
+
+        Route::any('categories/search', 'CategoryController@search')->name('categories.search');
+        Route::resource('categories', 'CategoryController');
 
         /**
          * Plans x Profile
